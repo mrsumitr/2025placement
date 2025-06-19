@@ -1,0 +1,96 @@
+#Q1 TWO sum
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int n = nums.size();
+
+        // Step 1: Store value and index pairs
+        vector<pair<int, int>> v;
+        for (int i = 0; i < n; i++) {
+            v.push_back({nums[i], i});
+        }
+
+        // Step 2: Sort based on values
+        sort(v.begin(), v.end());
+
+        // Step 3: Two-pointer approach
+        int start = 0, end = n - 1;
+        while (start < end) {
+            int sum = v[start].first + v[end].first;
+            if (sum == target) {
+                return {v[start].second, v[end].second}; // Return original indices
+            } else if (sum < target) {
+                start++;
+            } else {
+                end--;
+            }
+        }
+
+        return {}; // No answer found
+    }
+};
+
+#Q2 Party of Couples
+// User function Template for C++
+
+class Solution {
+  public:
+    int findSingle(vector<int> &arr) {
+        // code here
+        int single=0;
+        for(int i=0; i<arr.size(); i++){
+            single^=arr[i];
+        }
+        return single;
+    }
+};
+
+
+
+#Q3 121. Best Time to Buy and Sell Stock
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        
+
+        int minPrice = prices[0];
+        int maxProfit = 0;
+
+        for (int i = 1; i < n; i++) {
+            // Potential profit if we sell today
+            int profit = prices[i] - minPrice;
+            maxProfit = max(maxProfit, profit);
+
+            // Update the minimum price (best buy point)
+            minPrice = min(minPrice, prices[i]);
+        }
+
+        return maxProfit;
+    }
+};
+
+#Q4 Sort Colours
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int n =nums.size();
+        int left = 0;
+        int right = n - 1;
+        int index = 0;
+        while (index <= right) {
+            if (nums[index] == 0) {
+                swap(nums[index], nums[left]);
+                left++;
+                index++;
+            } else if (nums[index] == 2) {
+                swap(nums[index], nums[right]);
+
+                right--;
+
+            } else {
+                index++;
+            }
+        }
+    }
+};
