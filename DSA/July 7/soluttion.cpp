@@ -57,3 +57,38 @@ public:
     }
 };
 #Q2 LC 39. Combination Sum
+
+#Q3 46. Permutations
+class Solution {
+
+private:
+    void recursion( vector<vector<int>> &ans, vector<int> &ds, int freq[], vector<int> &nums){
+
+        if(ds.size()==nums.size()){
+            ans.push_back(ds);
+            return;
+        }
+        for(int i=0; i<nums.size(); i++){
+            if(!freq[i]){
+            ds.push_back(nums[i]);
+            freq[i]=1;
+            
+            recursion(ans,ds,freq,nums);
+            ds.pop_back();
+            freq[i]=0;
+            }
+        }
+
+    }
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ans;
+        vector<int> ds;
+        int freq[nums.size()];
+        for(int i=0; i<nums.size(); i++) freq[i]=0;
+        recursion(ans,ds,freq,nums);
+        return ans;
+
+    }
+};
+
