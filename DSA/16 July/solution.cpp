@@ -80,3 +80,54 @@ public:
     }
 };
 #Q3 236. Lowest Common Ancestor of a Binary Tree
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (root == nullptr || root == p || root == q)
+            return root;
+        TreeNode* left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = lowestCommonAncestor(root->right, p, q);
+        if (left && right) return root;
+        return (left != nullptr) ? left : right;
+    }
+};
+ #Q4 230. Kth Smallest Element in a BST
+M1 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+
+
+class Solution {
+private:
+    void all(TreeNode* root,vector<int> &s){
+        if(!root) return;
+        s.push_back(root->val);
+        all(root->left,s);
+        all(root->right,s);
+    }
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        vector<int> s;
+        all(root,s);
+        sort(s.begin(),s.end());
+        return s[k-1];
+    }
+};
