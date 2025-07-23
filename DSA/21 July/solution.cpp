@@ -54,3 +54,82 @@ int main() {
 
     return 0;
 }
+#Q2 selection sort
+//find min element replace it with v[i]  selected smallest element.
+#include <iostream>
+#include <vector>
+#include <climits>
+using namespace std;
+
+int main() {
+    vector<int> v = {2, 5, 3, 6, 4, 8, 1};
+    int n = v.size();
+
+    for(int i = 0; i < n; i++) {
+        int index = -1;
+        int minn = INT_MAX;
+
+        for(int j = i; j < n; j++) {
+            if(minn > v[j]) {
+                index = j;
+                minn = v[j];  // fix here
+            }
+        }
+
+        swap(v[i], v[index]);
+    }
+
+    for(int i = 0; i < n; i++) {
+        cout << v[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+#Q3 Bubble sort
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> v = {2, 5, 3, 6, 4, 8, 1};
+    int n = v.size();
+
+    for(int i = 0; i < n - 1; i++) {
+        for(int j = 0; j < n - i - 1; j++) {
+            if(v[j] > v[j + 1]) {
+                swap(v[j], v[j + 1]);
+            }
+        }
+    }
+
+    for(int i = 0; i < n; i++) {
+        cout << v[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+#Q4 Insertion Sort
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> v = {3,5,1,6,5,8,1};
+    int n = v.size();
+    for(int i=1; i<n; i++){
+        for(int j=i; j>0; j--){
+            if(v[j-1]>v[j]){
+                swap(v[j-1],v[j]);
+            }
+        }
+    }
+
+    for(int i = 0; i < n; i++) {
+        cout << v[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
